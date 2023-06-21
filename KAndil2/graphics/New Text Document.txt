@@ -1,0 +1,165 @@
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace sf;
+
+
+
+int main()
+{
+	bool interface_button = true, Backforplay_Button = false, Backforabout_Button = false, Backforimport_Button = false;
+	RenderWindow window(VideoMode(800, 600), "Soduko");
+
+
+
+
+
+	Texture button1;
+	button1.loadFromFile("e16afd93a11e6077ba2acc12dcdfe392.jpg");
+	RectangleShape r_button1;
+	r_button1.setSize(Vector2f(280, 60));
+	r_button1.setTexture(&button1);
+
+	Texture button2;
+	button2.loadFromFile("6c6067924dd6e88cd2fe2d2fb438401d.jpg");
+	RectangleShape r_button2;
+	r_button2.setSize(Vector2f(280, 60));
+	r_button2.setTexture(&button2);
+
+	Font font_button;
+	font_button.loadFromFile("stocky.ttf");
+	Text t_font_button;
+	t_font_button.setFont(font_button);
+
+	Vector2i mousepos = Mouse::getPosition(window);
+
+	while (window.isOpen())
+	{
+		Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == Event::Closed)
+				window.close();
+		}
+		if (interface_button == true)
+		{
+			r_button1.setPosition(260, 170);
+			window.draw(r_button1);
+			r_button1.setPosition(260, 260);
+			window.draw(r_button1);
+			r_button1.setPosition(260, 360);
+			window.draw(r_button1);
+			r_button1.setPosition(260, 460);
+			window.draw(r_button1);
+			if (Event::MouseMoved)
+			{
+				if ((event.mouseMove.x >= 260 && event.mouseMove.x <= 540) && (event.mouseMove.y >= 167 && event.mouseMove.y <= 222))
+				{
+					r_button2.setPosition(260, 170);
+					window.draw(r_button2);
+					r_button1.setPosition(260, 260);
+					window.draw(r_button1);
+					r_button1.setPosition(260, 360);
+					window.draw(r_button1);
+					r_button1.setPosition(260, 460);
+					window.draw(r_button1);
+
+				}
+				else if ((event.mouseMove.x >= 260 && event.mouseMove.x <= 540) && (event.mouseMove.y >= 262 && event.mouseMove.y <= 322))
+				{
+					r_button2.setPosition(260, 260);
+					window.draw(r_button2);
+					r_button1.setPosition(260, 170);
+					window.draw(r_button1);
+					r_button1.setPosition(260, 360);
+					window.draw(r_button1);
+					r_button1.setPosition(260, 460);
+					window.draw(r_button1);
+				}
+				else if ((event.mouseMove.x >= 260 && event.mouseMove.x <= 540) && (event.mouseMove.y >= 357 && event.mouseMove.y <= 422))
+				{
+
+
+					r_button2.setPosition(260, 360);
+					window.draw(r_button2);
+					r_button1.setPosition(260, 170);
+					window.draw(r_button1);
+					r_button1.setPosition(260, 260);
+					window.draw(r_button1);
+					r_button1.setPosition(260, 460);
+					window.draw(r_button1);
+				}
+				else if ((event.mouseMove.x >= 260 && event.mouseMove.x <= 540) && (event.mouseMove.y >= 452 && event.mouseMove.y <= 522))
+				{
+					r_button2.setPosition(260, 460);
+					window.draw(r_button2);
+					r_button1.setPosition(260, 170);
+					window.draw(r_button1);
+					r_button1.setPosition(260, 260);
+					window.draw(r_button1);
+					r_button1.setPosition(260, 360);
+					window.draw(r_button1);
+				}
+
+
+				t_font_button.setPosition(360, 175);
+				t_font_button.setString("Play");
+				window.draw(t_font_button);
+				t_font_button.setPosition(270, 275);
+				t_font_button.setString("import sudoku");
+				window.draw(t_font_button);
+				t_font_button.setPosition(350, 375);
+				t_font_button.setString("about");
+				window.draw(t_font_button);
+				t_font_button.setPosition(360, 475);
+				t_font_button.setString("Exit");
+				window.draw(t_font_button);
+
+				window.display();
+			}
+			if (Mouse::isButtonPressed(Mouse::Left))
+			{
+				Vector2i mousepos = sf::Mouse::getPosition(window);
+				if ((mousepos.x >= 260 && mousepos.x <= 540) && (mousepos.y >= 167 && mousepos.y <= 222))
+				{
+					interface_button = false;
+					Backforplay_Button = true;
+					//play
+					
+				}
+
+				else if ((event.mouseMove.x >= 260 && event.mouseMove.x <= 540) && (event.mouseMove.y >= 357 && event.mouseMove.y <= 422))
+				{
+					interface_button = false;
+					Backforabout_Button = true;
+					//about
+				}
+				else if ((event.mouseMove.x >= 260 && event.mouseMove.x <= 540) && (event.mouseMove.y >= 357 && event.mouseMove.y <= 422))
+				{
+					interface_button = false;
+					Backforimport_Button = true;
+					//Import soduko
+
+				}
+				else if ((event.mouseMove.x >= 260 && event.mouseMove.x <= 540) && (event.mouseMove.y >= 452 && event.mouseMove.y <= 522))
+					window.close();
+			}
+		}
+
+
+		if (Backforplay_Button == true)
+		{
+			//fucntion play
+		}
+		else if (Backforimport_Button == true)
+		{
+			//fucntion import
+		}
+		else if (Backforabout_Button == true)
+		{
+			//fucntion about
+		}
+	}
+}
